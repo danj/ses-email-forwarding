@@ -5,31 +5,31 @@
     "url": "https://github.com/seeebiii/ses-email-forwarding"
   },
   "scripts": {
-    "build": "npx projen build",
-    "bump": "npx projen bump",
-    "clobber": "npx projen clobber",
-    "compat": "npx projen compat",
-    "compile": "npx projen compile",
-    "default": "npx projen default",
-    "docgen": "npx projen docgen",
-    "eject": "npx projen eject",
-    "eslint": "npx projen eslint",
-    "package": "npx projen package",
-    "package-all": "npx projen package-all",
-    "package:dotnet": "npx projen package:dotnet",
-    "package:java": "npx projen package:java",
-    "package:js": "npx projen package:js",
-    "package:python": "npx projen package:python",
-    "post-compile": "npx projen post-compile",
-    "post-upgrade": "npx projen post-upgrade",
-    "pre-compile": "npx projen pre-compile",
-    "release": "npx projen release",
-    "test": "npx projen test",
-    "test:watch": "npx projen test:watch",
-    "unbump": "npx projen unbump",
-    "upgrade": "npx projen upgrade",
-    "watch": "npx projen watch",
-    "projen": "npx projen"
+    "build": "projen build",
+    "bump": "projen bump",
+    "clobber": "projen clobber",
+    "compat": "projen compat",
+    "compile": "projen compile",
+    "default": "projen default",
+    "docgen": "projen docgen",
+    "eject": "projen eject",
+    "eslint": "projen eslint",
+    "package": "projen package",
+    "package-all": "projen package-all",
+    "package:dotnet": "projen package:dotnet",
+    "package:java": "projen package:java",
+    "package:js": "projen package:js",
+    "package:python": "projen package:python",
+    "post-compile": "projen post-compile",
+    "post-upgrade": "projen post-upgrade",
+    "pre-compile": "projen pre-compile",
+    "release": "projen release",
+    "test": "projen test",
+    "test:watch": "projen test:watch",
+    "unbump": "projen unbump",
+    "upgrade": "projen upgrade",
+    "watch": "projen watch",
+    "projen": "projen"
   },
   "author": {
     "name": "Sebastian Hesse",
@@ -37,32 +37,33 @@
     "organization": false
   },
   "devDependencies": {
+    "@stylistic/eslint-plugin": "^2",
     "@types/aws-lambda": "^8.10.161",
     "@types/jest": "^29.5.8",
-    "@types/node": "^16 <= 16.18.78",
-    "@typescript-eslint/eslint-plugin": "^8.59.4",
-    "@typescript-eslint/parser": "^8.59.4",
+    "@types/node": "ts5.2",
+    "@typescript-eslint/eslint-plugin": "^8",
+    "@typescript-eslint/parser": "^8",
     "aws-cdk-lib": "2.257.0",
-    "constructs": "10.6.0",
+    "commit-and-tag-version": "^12",
+    "constructs": "10.5.1",
     "esbuild": "^0.28.0",
-    "eslint": "^8.57.1",
+    "eslint": "^9",
     "eslint-import-resolver-typescript": "^4.4.4",
     "eslint-plugin-import": "^2.32.0",
     "jest": "^29.7.0",
-    "jest-junit": "^17.0.0",
-    "jsii": "^5.9.41",
+    "jest-junit": "^17",
+    "jsii": "~5.9.0",
     "jsii-diff": "^1.132.0",
-    "jsii-docgen": "^1.8.110",
+    "jsii-docgen": "^10.5.0",
     "jsii-pacmak": "^1.132.0",
-    "jsii-rosetta": "^5.9.46",
+    "jsii-rosetta": "~5.9.0",
     "projen": "^0.99.64",
-    "standard-version": "^9",
     "ts-jest": "^29.1.1",
-    "typescript": "^5.9.3"
+    "typescript": "^5.2.2"
   },
   "peerDependencies": {
     "aws-cdk-lib": "^2.257.0",
-    "constructs": "^10.6.0"
+    "constructs": "^10.5.1"
   },
   "dependencies": {
     "@aws-sdk/client-ssm": "^3.948.0",
@@ -74,10 +75,6 @@
     "@seeebiii/ses-verify-identities",
     "aws-lambda-ses-forwarder"
   ],
-  "resolutions": {
-    "@types/babel__traverse": "7.18.2",
-    "@types/prettier": "2.6.0"
-  },
   "keywords": [
     "aws",
     "aws ses",
@@ -88,14 +85,21 @@
     "email forwarding",
     "gmail"
   ],
+  "devEngines": {
+    "packageManager": {
+      "name": "npm",
+      "onFail": "ignore"
+    }
+  },
   "main": "lib/index.js",
   "license": "MIT",
   "homepage": "https://github.com/seeebiii/ses-email-forwarding",
   "version": "0.0.0",
   "jest": {
+    "coverageProvider": "v8",
     "testMatch": [
-      "<rootDir>/src/**/__tests__/**/*.ts?(x)",
-      "<rootDir>/(test|src)/**/*(*.)@(spec|test).ts?(x)"
+      "<rootDir>/@(src|test)/**/*(*.)@(spec|test).ts?(x)",
+      "<rootDir>/@(src|test)/**/__tests__/**/*.ts?(x)"
     ],
     "clearMocks": true,
     "collectCoverage": true,
@@ -125,11 +129,13 @@
         }
       ]
     ],
-    "preset": "ts-jest",
-    "globals": {
-      "ts-jest": {
-        "tsconfig": "tsconfig.dev.json"
-      }
+    "transform": {
+      "^.+\\.[t]sx?$": [
+        "ts-jest",
+        {
+          "tsconfig": "tsconfig.dev.json"
+        }
+      ]
     }
   },
   "types": "lib/index.d.ts",

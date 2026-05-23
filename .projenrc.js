@@ -1,4 +1,5 @@
 const { AwsCdkConstructLibrary } = require('projen/lib/awscdk');
+const { NodePackageManager } = require('projen/lib/javascript');
 
 const project = new AwsCdkConstructLibrary({
   author: 'Sebastian Hesse',
@@ -8,6 +9,7 @@ const project = new AwsCdkConstructLibrary({
   defaultReleaseBranch: 'main',
   jsiiFqn: 'projen.AwsCdkConstructLibrary',
   name: 'ses-email-forwarding',
+  packageManager: NodePackageManager.NPM,
   repositoryUrl: 'git@github.com:seeebiii/ses-email-forwarding.git',
 
   /* ConstructLibraryOptions */
@@ -89,5 +91,7 @@ const project = new AwsCdkConstructLibrary({
 });
 
 project.compileTask.exec('esbuild src/lambda/index.ts --bundle --platform=node --target=node18 --outfile=lib/lambda/index.js');
+
+project.tasks.addEnvironment('PATH', '$(printf "%s/node_modules/.bin:%s" "$(pwd)" "$PATH")');
 
 project.synth();
