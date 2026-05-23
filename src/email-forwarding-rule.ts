@@ -1,3 +1,4 @@
+import * as fs from 'fs';
 import * as path from 'path';
 import { Duration, RemovalPolicy } from 'aws-cdk-lib';
 import { PolicyStatement } from 'aws-cdk-lib/aws-iam';
@@ -193,10 +194,14 @@ export class EmailForwardingRule extends Construct {
     bucket: Bucket,
     bucketPrefix: string,
   ) {
+    const lambdaPath = fs.existsSync(path.join(__dirname, 'lambda', 'index.js'))
+      ? path.join(__dirname, 'lambda')
+      : path.join(__dirname, '..', 'lib', 'lambda');
+
     return new Function(this, 'EmailForwardingFunction', {
       runtime: Runtime.NODEJS_18_X,
       handler: 'index.handler',
-      code: Code.fromAsset(path.join(__dirname, 'lambda')),
+      code: Code.fromAsset(lambdaPath),
       timeout: Duration.seconds(30),
       memorySize: 512,
       environment: {
