@@ -120,6 +120,11 @@ export class EmailForwardingRule extends Construct {
       : new Bucket(this, 'EmailBucket', {
         publicReadAccess: false,
         removalPolicy: RemovalPolicy.RETAIN,
+        lifecycleRules: [
+          {
+            expiration: Duration.days(7),
+          },
+        ],
       });
   }
 

@@ -224,4 +224,34 @@ describe('email forwarding rule', () => {
       },
     }));
   });
+
+  it('automatically created bucket has lifecycle rule', () => {
+    const app = new App();
+    const stack = new Stack(app, 'TestStack');
+
+    const ruleId = 'example.org-id';
+    const receiptRuleSet = new ReceiptRuleSet(stack, 'example', {});
+
+    new EmailForwardingRule(stack, 'ExampleRule', {
+      domainName: 'example.org',
+      fromPrefix: 'noreply',
+      id: ruleId,
+      emailMapping: [{
+        receiveEmail: 'hello@example.org',
+        targetEmails: ['admin+hello@gmail.com'],
+      }],
+      ruleSet: receiptRuleSet,
+    });
+
+    Template.fromStack(stack).hasResourceProperties('AWS::S3::Bucket', {
+      LifecycleConfiguration: {
+        Rules: [
+          {
+            ExpirationInDays: 7,
+            Status: 'Enabled',
+          },
+        ],
+      },
+    });
+  });
 });
