@@ -1,9 +1,9 @@
-import { Context, S3Event } from 'aws-lambda';
-import * as AWS from 'aws-sdk';
+import { GetParameterCommand, SSMClient } from '@aws-sdk/client-ssm';
+import type { Context, S3Event } from 'aws-lambda';
 // eslint-disable-next-line @typescript-eslint/no-require-imports
 const forwarder = require('aws-lambda-ses-forwarder');
 
-const ssm = new AWS.SSM();
+const ssm = new SSMClient({});
 const ssmKey = process.env.EMAIL_MAPPING_SSM_KEY as string;
 const fromEmail = process.env.FROM_EMAIL;
 const bucketName = process.env.BUCKET_NAME;
@@ -22,10 +22,9 @@ function log(message: string, ...obj: any): void {
 async function loadEmailMappingFromSsm() {
   if (!emailMapping) {
     const ssmValue = await ssm
-      .getParameter({
+      .send(new GetParameterCommand({
         Name: ssmKey,
-      })
-      .promise();
+      }));
 
     if (ssmValue.Parameter?.Value) {
       emailMapping = JSON.parse(ssmValue.Parameter.Value);
