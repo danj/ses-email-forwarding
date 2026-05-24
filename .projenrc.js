@@ -11,6 +11,7 @@ const project = new AwsCdkConstructLibrary({
   name: 'ses-email-forwarding',
   packageManager: NodePackageManager.NPM,
   repositoryUrl: 'git@github.com:seeebiii/ses-email-forwarding.git',
+  github: false,
 
   /* ConstructLibraryOptions */
   catalog: {
