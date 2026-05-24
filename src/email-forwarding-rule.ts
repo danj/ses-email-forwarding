@@ -204,7 +204,7 @@ export class EmailForwardingRule extends Construct {
       : path.join(__dirname, '..', 'lib', 'lambda');
 
     return new Function(this, 'EmailForwardingFunction', {
-      runtime: Runtime.NODEJS_18_X,
+      runtime: Runtime.NODEJS_22_X,
       handler: 'index.handler',
       code: Code.fromAsset(lambdaPath),
       timeout: Duration.seconds(30),
