@@ -25,5 +25,19 @@ export const provoizeEmailForwarding: EmailForwardingProps = {
         'ibenyeh+info.provoize@gmail.com',
       ],
     },
+    {
+      receivePrefix: 'privacy',
+      targetEmails: [
+        'dan.julius+privacy.provoize@gmail.com',
+        'ibenyeh+privacy.provoize@gmail.com',
+      ],
+    },
+    {
+      receivePrefix: 'legal',
+      targetEmails: [
+        'dan.julius+legal.provoize@gmail.com',
+        'ibenyeh+legal.provoize@gmail.com',
+      ],
+    },
   ],
 };
