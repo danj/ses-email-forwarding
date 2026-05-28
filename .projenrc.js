@@ -54,6 +54,7 @@ const project = new AwsCdkConstructLibrary({
     'projen@^0.99.64',
     'ts-jest@^29.1.1',
     'typescript@^5.9.3',
+    'aws-cdk@2.1124.1',
   ],
   bundledDeps: ['aws-lambda-ses-forwarder@^6.0.0', '@aws-sdk/client-ssm', '@seeebiii/ses-verify-identities@4.2.3'],
   homepage: 'https://github.com/seeebiii/ses-email-forwarding',
@@ -94,5 +95,11 @@ const project = new AwsCdkConstructLibrary({
 project.compileTask.exec('esbuild src/lambda/index.ts --bundle --platform=node --target=node18 --outfile=lib/lambda/index.js');
 
 project.tasks.addEnvironment('PATH', '$(printf "%s/node_modules/.bin:%s" "$(pwd)" "$PATH")');
+
+const deployTask = project.addTask('deploy', {
+  description: 'Compiles the Lambda function and deploys the CDK stack',
+});
+deployTask.exec('esbuild src/lambda/index.ts --bundle --platform=node --target=node22 --outfile=lib/lambda/index.js');
+deployTask.exec('npx cdk deploy --app "npx ts-node config/email-forwarding.ts"');
 
 project.synth();

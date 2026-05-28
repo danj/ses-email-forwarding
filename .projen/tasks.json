@@ -104,6 +104,18 @@
         }
       ]
     },
+    "deploy": {
+      "name": "deploy",
+      "description": "Compiles the Lambda function and deploys the CDK stack",
+      "steps": [
+        {
+          "exec": "esbuild src/lambda/index.ts --bundle --platform=node --target=node22 --outfile=lib/lambda/index.js"
+        },
+        {
+          "exec": "npx cdk deploy --app \"npx ts-node config/email-forwarding.ts\""
+        }
+      ]
+    },
     "docgen": {
       "name": "docgen",
       "description": "Generate API.md from .jsii manifest",
@@ -319,7 +331,7 @@
           "exec": "npm install"
         },
         {
-          "exec": "npm update @stylistic/eslint-plugin @types/aws-lambda @types/jest @types/node @typescript-eslint/eslint-plugin @typescript-eslint/parser commit-and-tag-version esbuild eslint-import-resolver-typescript eslint-plugin-import eslint jest jest-junit jsii-diff jsii-docgen jsii-pacmak jsii-rosetta jsii projen ts-jest typescript @aws-sdk/client-ssm @seeebiii/ses-verify-identities aws-lambda-ses-forwarder aws-cdk-lib constructs"
+          "exec": "npm update @stylistic/eslint-plugin @types/aws-lambda @types/jest @types/node @typescript-eslint/eslint-plugin @typescript-eslint/parser aws-cdk commit-and-tag-version esbuild eslint-import-resolver-typescript eslint-plugin-import eslint jest jest-junit jsii-diff jsii-docgen jsii-pacmak jsii-rosetta jsii projen ts-jest typescript @aws-sdk/client-ssm @seeebiii/ses-verify-identities aws-lambda-ses-forwarder aws-cdk-lib constructs"
         },
         {
           "exec": "npx projen"
