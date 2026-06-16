@@ -40,6 +40,13 @@ export const provoizeEmailForwarding: EmailForwardingProps = {
       ],
     },
     {
+      receivePrefix: 'dpo',
+      targetEmails: [
+        'dan.julius+dpo.provoize@gmail.com',
+        'ibenyeh+dpo.provoize@gmail.com',
+      ],
+    },
+    {
       receivePrefix: 'dan',
       targetEmails: [
         'dan.julius+provoize@gmail.com',
