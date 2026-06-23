@@ -75,7 +75,7 @@ const project = new AwsCdkConstructLibrary({
   /* NodeProjectOptions */
   antitamper: false,
   copyrightOwner: 'Sebastian Hesse',
-  gitignore: ['.idea', '.env'],
+  gitignore: ['.idea', '.env', 'cdk.out/'],
   tsconfigDev: {
     compilerOptions: {
       esModuleInterop: true,

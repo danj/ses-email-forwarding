@@ -1,8 +1,8 @@
 import { GetParameterCommand, SSMClient } from '@aws-sdk/client-ssm';
+import * as Sentry from '@sentry/aws-serverless';
 import type { Context, S3Event } from 'aws-lambda';
 // eslint-disable-next-line @typescript-eslint/no-require-imports
 const forwarder = require('aws-lambda-ses-forwarder');
-import * as Sentry from '@sentry/aws-serverless';
 
 Sentry.init({
   dsn: process.env.SENTRY_DSN,
