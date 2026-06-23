@@ -30,6 +30,7 @@ jspm_packages/
 .yarn-integrity
 .cache
 .idea
+.env
 /test-reports/
 junit.xml
 /coverage/

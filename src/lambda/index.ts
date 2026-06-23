@@ -2,6 +2,12 @@ import { GetParameterCommand, SSMClient } from '@aws-sdk/client-ssm';
 import type { Context, S3Event } from 'aws-lambda';
 // eslint-disable-next-line @typescript-eslint/no-require-imports
 const forwarder = require('aws-lambda-ses-forwarder');
+import * as Sentry from '@sentry/aws-serverless';
+
+Sentry.init({
+  dsn: process.env.SENTRY_DSN,
+  tracesSampleRate: 1.0,
+});
 
 
 const ssm = new SSMClient({});
@@ -34,7 +40,7 @@ async function loadEmailMappingFromSsm() {
 }
 
 
-export const handler = async (event: S3Event, context: Context): Promise<void> => {
+export const handler = Sentry.wrapHandler(async (event: S3Event, context: Context): Promise<void> => {
   log('Received SES event : ', JSON.stringify(event));
 
   // Trigger test exception for Sentry integration
@@ -79,4 +85,4 @@ export const handler = async (event: S3Event, context: Context): Promise<void> =
   }
 
   return Promise.resolve();
-};
+});

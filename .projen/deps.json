@@ -39,6 +39,10 @@
       "type": "build"
     },
     {
+      "name": "dotenv",
+      "type": "build"
+    },
+    {
       "name": "esbuild",
       "version": "^0.28.0",
       "type": "build"
