@@ -4,6 +4,7 @@ export const djuliusEmailForwarding: EmailForwardingProps = {
   domainName: 'djulius.com',
   verifyDomain: false,
   fromPrefix: 'noreply',
+  sentryDsn: process.env.TEST_SENTRY_DSN,
   emailMappings: [
     {
       receivePrefix: 'me',

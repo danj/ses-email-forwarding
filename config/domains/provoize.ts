@@ -4,6 +4,7 @@ export const provoizeEmailForwarding: EmailForwardingProps = {
   domainName: 'provoize.com',
   verifyDomain: false,
   fromPrefix: 'noreply',
+  sentryDsn: process.env.TEST_SENTRY_DSN,
   emailMappings: [
     {
       receivePrefix: 'support',
