@@ -1,3 +1,4 @@
+import 'dotenv/config';
 import * as cdk from 'aws-cdk-lib';
 import { ReceiptRuleSet } from 'aws-cdk-lib/aws-ses';
 import { Construct } from 'constructs';
