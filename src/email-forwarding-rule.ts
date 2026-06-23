@@ -221,9 +221,9 @@ export class EmailForwardingRule extends Construct {
         FROM_EMAIL: (props.fromPrefix ?? 'noreply') + '@' + props.domainName,
         BUCKET_NAME: bucket.bucketName,
         BUCKET_PREFIX: bucketPrefix,
-        ...(props.sentryDsn ? { 
+        ...(props.sentryDsn ? {
           SENTRY_DSN: props.sentryDsn,
-          NODE_OPTIONS: '--import @sentry/aws-serverless/awslambda-auto'
+          NODE_OPTIONS: '--import @sentry/aws-serverless/awslambda-auto',
         } : {}),
       },
     });

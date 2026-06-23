@@ -37,6 +37,11 @@ async function loadEmailMappingFromSsm() {
 export const handler = async (event: S3Event, context: Context): Promise<void> => {
   log('Received SES event : ', JSON.stringify(event));
 
+  // Trigger test exception for Sentry integration
+  if ((event as any).testSentry) {
+    throw new Error('Test exception to verify Sentry integration');
+  }
+
   if (!ssmKey || !fromEmail || !bucketName) {
     const message = 'Missing required environment variables. Either EMAIL_MAPPING_SSM_KEY, FROM_EMAIL or BUCKET_NAME is not set.';
     console.error(message);
