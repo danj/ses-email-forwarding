@@ -1,0 +1,356 @@
+{
+  "/EmailForwardingStack": [
+    {
+      "type": "aws:cdk:creationStack",
+      "data": [
+        "<anonymous> (/home/danj/dev/ses-email-forwarding/config/email-forwarding.ts:27:1)",
+        "...node internals, ts-node, ts-node..."
+      ]
+    }
+  ],
+  "/EmailForwardingStack/BootstrapVersion": [
+    {
+      "type": "aws:cdk:logicalId",
+      "data": "BootstrapVersion"
+    },
+    {
+      "type": "aws:cdk:creationStack",
+      "data": [
+        "...aws-cdk-lib...",
+        "(no user code in 10 frames, use --stack-trace-limit to capture more)"
+      ]
+    }
+  ],
+  "/EmailForwardingStack/CheckBootstrapVersion": [
+    {
+      "type": "aws:cdk:logicalId",
+      "data": "CheckBootstrapVersion"
+    },
+    {
+      "type": "aws:cdk:creationStack",
+      "data": [
+        "...aws-cdk-lib...",
+        "(no user code in 10 frames, use --stack-trace-limit to capture more)"
+      ]
+    }
+  ],
+  "/EmailForwardingStack/EmailForwarding/ReceiptRuleSetOutput": [
+    {
+      "type": "aws:cdk:logicalId",
+      "data": "EmailForwardingReceiptRuleSetOutputC61C9DCB"
+    },
+    {
+      "type": "aws:cdk:creationStack",
+      "data": [
+        "EmailForwardingRuleSet.createRuleSetOrUseExisting (/home/danj/dev/ses-email-forwarding/src/email-forwarding-rule-set.ts:122:5)",
+        "new EmailForwardingRuleSet (/home/danj/dev/ses-email-forwarding/src/email-forwarding-rule-set.ts:110:25)",
+        "new EmailForwardingStack (/home/danj/dev/ses-email-forwarding/config/email-forwarding.ts:14:5)",
+        "<anonymous> (/home/danj/dev/ses-email-forwarding/config/email-forwarding.ts:27:1)",
+        "...node internals, ts-node, ts-node..."
+      ]
+    }
+  ],
+  "/EmailForwardingStack/CDKMetadata/Default": [
+    {
+      "type": "aws:cdk:logicalId",
+      "data": "CDKMetadata"
+    },
+    {
+      "type": "aws:cdk:creationStack",
+      "data": [
+        "...aws-cdk-lib, node internals...",
+        "(no user code in 10 frames, use --stack-trace-limit to capture more)"
+      ]
+    }
+  ],
+  "/EmailForwardingStack/EmailForwarding/EmailForwardingRule-0/ReceiptRule/Resource": [
+    {
+      "type": "aws:cdk:logicalId",
+      "data": "EmailForwardingEmailForwardingRule0ReceiptRule04278776"
+    },
+    {
+      "type": "aws:cdk:creationStack",
+      "data": [
+        "...new ReceiptRule2 in aws-cdk-lib...",
+        "EmailForwardingRule.createReceiptRule (/home/danj/dev/ses-email-forwarding/src/email-forwarding-rule.ts:132:12)",
+        "new EmailForwardingRule (/home/danj/dev/ses-email-forwarding/src/email-forwarding-rule.ts:94:32)",
+        "/home/danj/dev/ses-email-forwarding/src/email-forwarding-rule-set.ts:138: (/home/danj/dev/ses-email-forwarding/src/email-forwarding-rule-set.ts:138:3)",
+        "Array.forEach (:)",
+        "EmailForwardingRuleSet.setupEmailForwardingMappings (/home/danj/dev/ses-email-forwarding/src/email-forwarding-rule-set.ts:131:32)",
+        "new EmailForwardingRuleSet (/home/danj/dev/ses-email-forwarding/src/email-forwarding-rule-set.ts:111:10)",
+        "new EmailForwardingStack (/home/danj/dev/ses-email-forwarding/config/email-forwarding.ts:14:5)"
+      ]
+    }
+  ],
+  "/EmailForwardingStack/EmailForwarding/EmailForwardingRule-0/EmailBucket/Resource": [
+    {
+      "type": "aws:cdk:logicalId",
+      "data": "EmailForwardingEmailForwardingRule0EmailBucketF4A4F99D"
+    },
+    {
+      "type": "aws:cdk:creationStack",
+      "data": [
+        "...new Bucket2 in aws-cdk-lib...",
+        "EmailForwardingRule.createBucketOrUseExisting (/home/danj/dev/ses-email-forwarding/src/email-forwarding-rule.ts:120:9)",
+        "new EmailForwardingRule (/home/danj/dev/ses-email-forwarding/src/email-forwarding-rule.ts:97:27)",
+        "/home/danj/dev/ses-email-forwarding/src/email-forwarding-rule-set.ts:138: (/home/danj/dev/ses-email-forwarding/src/email-forwarding-rule-set.ts:138:3)",
+        "Array.forEach (:)",
+        "EmailForwardingRuleSet.setupEmailForwardingMappings (/home/danj/dev/ses-email-forwarding/src/email-forwarding-rule-set.ts:131:32)",
+        "new EmailForwardingRuleSet (/home/danj/dev/ses-email-forwarding/src/email-forwarding-rule-set.ts:111:10)",
+        "new EmailForwardingStack (/home/danj/dev/ses-email-forwarding/config/email-forwarding.ts:14:5)"
+      ]
+    }
+  ],
+  "/EmailForwardingStack/EmailForwarding/EmailForwardingRule-0/ForwardEmailMapping/Resource": [
+    {
+      "type": "aws:cdk:logicalId",
+      "data": "EmailForwardingEmailForwardingRule0ForwardEmailMappingCC207082"
+    },
+    {
+      "type": "aws:cdk:creationStack",
+      "data": [
+        "...new StringParameter2 in aws-cdk-lib...",
+        "EmailForwardingRule.createLambdaForwarderAction (/home/danj/dev/ses-email-forwarding/src/email-forwarding-rule.ts:164:37)",
+        "new EmailForwardingRule (/home/danj/dev/ses-email-forwarding/src/email-forwarding-rule.ts:101:33)",
+        "/home/danj/dev/ses-email-forwarding/src/email-forwarding-rule-set.ts:138: (/home/danj/dev/ses-email-forwarding/src/email-forwarding-rule-set.ts:138:3)",
+        "Array.forEach (:)",
+        "EmailForwardingRuleSet.setupEmailForwardingMappings (/home/danj/dev/ses-email-forwarding/src/email-forwarding-rule-set.ts:131:32)",
+        "new EmailForwardingRuleSet (/home/danj/dev/ses-email-forwarding/src/email-forwarding-rule-set.ts:111:10)",
+        "new EmailForwardingStack (/home/danj/dev/ses-email-forwarding/config/email-forwarding.ts:14:5)",
+        "<anonymous> (/home/danj/dev/ses-email-forwarding/config/email-forwarding.ts:27:1)"
+      ]
+    }
+  ],
+  "/EmailForwardingStack/EmailForwarding/EmailForwardingRule-0/EmailForwardingFunction/Resource": [
+    {
+      "type": "aws:cdk:logicalId",
+      "data": "EmailForwardingEmailForwardingRule0EmailForwardingFunction70AAF617"
+    },
+    {
+      "type": "aws:cdk:creationStack",
+      "data": [
+        "...new Function2 in aws-cdk-lib...",
+        "EmailForwardingRule.createLambdaForwarderFunction (/home/danj/dev/ses-email-forwarding/src/email-forwarding-rule.ts:206:12)",
+        "EmailForwardingRule.createLambdaForwarderAction (/home/danj/dev/ses-email-forwarding/src/email-forwarding-rule.ts:168:36)",
+        "new EmailForwardingRule (/home/danj/dev/ses-email-forwarding/src/email-forwarding-rule.ts:101:33)",
+        "/home/danj/dev/ses-email-forwarding/src/email-forwarding-rule-set.ts:138: (/home/danj/dev/ses-email-forwarding/src/email-forwarding-rule-set.ts:138:3)",
+        "Array.forEach (:)",
+        "EmailForwardingRuleSet.setupEmailForwardingMappings (/home/danj/dev/ses-email-forwarding/src/email-forwarding-rule-set.ts:131:32)",
+        "new EmailForwardingRuleSet (/home/danj/dev/ses-email-forwarding/src/email-forwarding-rule-set.ts:111:10)",
+        "new EmailForwardingStack (/home/danj/dev/ses-email-forwarding/config/email-forwarding.ts:14:5)"
+      ]
+    }
+  ],
+  "/EmailForwardingStack/EmailForwarding/EmailForwardingRule-0/EmailForwardingFunction/AllowSes": [
+    {
+      "type": "aws:cdk:logicalId",
+      "data": "EmailForwardingEmailForwardingRule0EmailForwardingFunctionAllowSes08023DDF"
+    },
+    {
+      "type": "aws:cdk:creationStack",
+      "data": [
+        "...WrappedClass.<anonymous> in aws-cdk-lib...",
+        "new EmailForwardingRule (/home/danj/dev/ses-email-forwarding/src/email-forwarding-rule.ts:102:19)",
+        "/home/danj/dev/ses-email-forwarding/src/email-forwarding-rule-set.ts:138: (/home/danj/dev/ses-email-forwarding/src/email-forwarding-rule-set.ts:138:3)",
+        "Array.forEach (:)",
+        "EmailForwardingRuleSet.setupEmailForwardingMappings (/home/danj/dev/ses-email-forwarding/src/email-forwarding-rule-set.ts:131:32)",
+        "new EmailForwardingRuleSet (/home/danj/dev/ses-email-forwarding/src/email-forwarding-rule-set.ts:111:10)",
+        "new EmailForwardingStack (/home/danj/dev/ses-email-forwarding/config/email-forwarding.ts:14:5)"
+      ]
+    }
+  ],
+  "/EmailForwardingStack/EmailForwarding/EmailForwardingRule-1/ReceiptRule/Resource": [
+    {
+      "type": "aws:cdk:logicalId",
+      "data": "EmailForwardingEmailForwardingRule1ReceiptRule727A7D4E"
+    },
+    {
+      "type": "aws:cdk:creationStack",
+      "data": [
+        "...new ReceiptRule2 in aws-cdk-lib...",
+        "EmailForwardingRule.createReceiptRule (/home/danj/dev/ses-email-forwarding/src/email-forwarding-rule.ts:132:12)",
+        "new EmailForwardingRule (/home/danj/dev/ses-email-forwarding/src/email-forwarding-rule.ts:94:32)",
+        "/home/danj/dev/ses-email-forwarding/src/email-forwarding-rule-set.ts:138: (/home/danj/dev/ses-email-forwarding/src/email-forwarding-rule-set.ts:138:3)",
+        "Array.forEach (:)",
+        "EmailForwardingRuleSet.setupEmailForwardingMappings (/home/danj/dev/ses-email-forwarding/src/email-forwarding-rule-set.ts:131:32)",
+        "new EmailForwardingRuleSet (/home/danj/dev/ses-email-forwarding/src/email-forwarding-rule-set.ts:111:10)",
+        "new EmailForwardingStack (/home/danj/dev/ses-email-forwarding/config/email-forwarding.ts:14:5)"
+      ]
+    }
+  ],
+  "/EmailForwardingStack/EmailForwarding/EmailForwardingRule-1/EmailBucket/Resource": [
+    {
+      "type": "aws:cdk:logicalId",
+      "data": "EmailForwardingEmailForwardingRule1EmailBucket8D13730A"
+    },
+    {
+      "type": "aws:cdk:creationStack",
+      "data": [
+        "...new Bucket2 in aws-cdk-lib...",
+        "EmailForwardingRule.createBucketOrUseExisting (/home/danj/dev/ses-email-forwarding/src/email-forwarding-rule.ts:120:9)",
+        "new EmailForwardingRule (/home/danj/dev/ses-email-forwarding/src/email-forwarding-rule.ts:97:27)",
+        "/home/danj/dev/ses-email-forwarding/src/email-forwarding-rule-set.ts:138: (/home/danj/dev/ses-email-forwarding/src/email-forwarding-rule-set.ts:138:3)",
+        "Array.forEach (:)",
+        "EmailForwardingRuleSet.setupEmailForwardingMappings (/home/danj/dev/ses-email-forwarding/src/email-forwarding-rule-set.ts:131:32)",
+        "new EmailForwardingRuleSet (/home/danj/dev/ses-email-forwarding/src/email-forwarding-rule-set.ts:111:10)",
+        "new EmailForwardingStack (/home/danj/dev/ses-email-forwarding/config/email-forwarding.ts:14:5)"
+      ]
+    }
+  ],
+  "/EmailForwardingStack/EmailForwarding/EmailForwardingRule-1/ForwardEmailMapping/Resource": [
+    {
+      "type": "aws:cdk:logicalId",
+      "data": "EmailForwardingEmailForwardingRule1ForwardEmailMapping385AC968"
+    },
+    {
+      "type": "aws:cdk:creationStack",
+      "data": [
+        "...new StringParameter2 in aws-cdk-lib...",
+        "EmailForwardingRule.createLambdaForwarderAction (/home/danj/dev/ses-email-forwarding/src/email-forwarding-rule.ts:164:37)",
+        "new EmailForwardingRule (/home/danj/dev/ses-email-forwarding/src/email-forwarding-rule.ts:101:33)",
+        "/home/danj/dev/ses-email-forwarding/src/email-forwarding-rule-set.ts:138: (/home/danj/dev/ses-email-forwarding/src/email-forwarding-rule-set.ts:138:3)",
+        "Array.forEach (:)",
+        "EmailForwardingRuleSet.setupEmailForwardingMappings (/home/danj/dev/ses-email-forwarding/src/email-forwarding-rule-set.ts:131:32)",
+        "new EmailForwardingRuleSet (/home/danj/dev/ses-email-forwarding/src/email-forwarding-rule-set.ts:111:10)",
+        "new EmailForwardingStack (/home/danj/dev/ses-email-forwarding/config/email-forwarding.ts:14:5)",
+        "<anonymous> (/home/danj/dev/ses-email-forwarding/config/email-forwarding.ts:27:1)"
+      ]
+    }
+  ],
+  "/EmailForwardingStack/EmailForwarding/EmailForwardingRule-1/EmailForwardingFunction/Resource": [
+    {
+      "type": "aws:cdk:logicalId",
+      "data": "EmailForwardingEmailForwardingRule1EmailForwardingFunction17FA6FA1"
+    },
+    {
+      "type": "aws:cdk:creationStack",
+      "data": [
+        "...new Function2 in aws-cdk-lib...",
+        "EmailForwardingRule.createLambdaForwarderFunction (/home/danj/dev/ses-email-forwarding/src/email-forwarding-rule.ts:206:12)",
+        "EmailForwardingRule.createLambdaForwarderAction (/home/danj/dev/ses-email-forwarding/src/email-forwarding-rule.ts:168:36)",
+        "new EmailForwardingRule (/home/danj/dev/ses-email-forwarding/src/email-forwarding-rule.ts:101:33)",
+        "/home/danj/dev/ses-email-forwarding/src/email-forwarding-rule-set.ts:138: (/home/danj/dev/ses-email-forwarding/src/email-forwarding-rule-set.ts:138:3)",
+        "Array.forEach (:)",
+        "EmailForwardingRuleSet.setupEmailForwardingMappings (/home/danj/dev/ses-email-forwarding/src/email-forwarding-rule-set.ts:131:32)",
+        "new EmailForwardingRuleSet (/home/danj/dev/ses-email-forwarding/src/email-forwarding-rule-set.ts:111:10)",
+        "new EmailForwardingStack (/home/danj/dev/ses-email-forwarding/config/email-forwarding.ts:14:5)"
+      ]
+    }
+  ],
+  "/EmailForwardingStack/EmailForwarding/EmailForwardingRule-1/EmailForwardingFunction/AllowSes": [
+    {
+      "type": "aws:cdk:logicalId",
+      "data": "EmailForwardingEmailForwardingRule1EmailForwardingFunctionAllowSes90607F6F"
+    },
+    {
+      "type": "aws:cdk:creationStack",
+      "data": [
+        "...WrappedClass.<anonymous> in aws-cdk-lib...",
+        "new EmailForwardingRule (/home/danj/dev/ses-email-forwarding/src/email-forwarding-rule.ts:102:19)",
+        "/home/danj/dev/ses-email-forwarding/src/email-forwarding-rule-set.ts:138: (/home/danj/dev/ses-email-forwarding/src/email-forwarding-rule-set.ts:138:3)",
+        "Array.forEach (:)",
+        "EmailForwardingRuleSet.setupEmailForwardingMappings (/home/danj/dev/ses-email-forwarding/src/email-forwarding-rule-set.ts:131:32)",
+        "new EmailForwardingRuleSet (/home/danj/dev/ses-email-forwarding/src/email-forwarding-rule-set.ts:111:10)",
+        "new EmailForwardingStack (/home/danj/dev/ses-email-forwarding/config/email-forwarding.ts:14:5)"
+      ]
+    }
+  ],
+  "/EmailForwardingStack/EmailForwarding/EmailForwardingRule-0/EmailBucket/Policy/Resource": [
+    {
+      "type": "aws:cdk:logicalId",
+      "data": "EmailForwardingEmailForwardingRule0EmailBucketPolicyEA436520"
+    },
+    {
+      "type": "aws:cdk:creationStack",
+      "data": [
+        "...WrappedClass.<anonymous> in aws-cdk-lib...",
+        "new EmailForwardingRule (/home/danj/dev/ses-email-forwarding/src/email-forwarding-rule.ts:99:19)",
+        "/home/danj/dev/ses-email-forwarding/src/email-forwarding-rule-set.ts:138: (/home/danj/dev/ses-email-forwarding/src/email-forwarding-rule-set.ts:138:3)",
+        "Array.forEach (:)"
+      ]
+    }
+  ],
+  "/EmailForwardingStack/EmailForwarding/EmailForwardingRule-0/EmailForwardingFunction/ServiceRole/Resource": [
+    {
+      "type": "aws:cdk:logicalId",
+      "data": "EmailForwardingEmailForwardingRule0EmailForwardingFunctionServiceRole4F091845"
+    },
+    {
+      "type": "aws:cdk:creationStack",
+      "data": [
+        "...new Function2 in aws-cdk-lib...",
+        "EmailForwardingRule.createLambdaForwarderFunction (/home/danj/dev/ses-email-forwarding/src/email-forwarding-rule.ts:206:12)",
+        "EmailForwardingRule.createLambdaForwarderAction (/home/danj/dev/ses-email-forwarding/src/email-forwarding-rule.ts:168:36)",
+        "new EmailForwardingRule (/home/danj/dev/ses-email-forwarding/src/email-forwarding-rule.ts:101:33)",
+        "/home/danj/dev/ses-email-forwarding/src/email-forwarding-rule-set.ts:138: (/home/danj/dev/ses-email-forwarding/src/email-forwarding-rule-set.ts:138:3)",
+        "Array.forEach (:)",
+        "EmailForwardingRuleSet.setupEmailForwardingMappings (/home/danj/dev/ses-email-forwarding/src/email-forwarding-rule-set.ts:131:32)"
+      ]
+    }
+  ],
+  "/EmailForwardingStack/EmailForwarding/EmailForwardingRule-1/EmailBucket/Policy/Resource": [
+    {
+      "type": "aws:cdk:logicalId",
+      "data": "EmailForwardingEmailForwardingRule1EmailBucketPolicy8A2FC119"
+    },
+    {
+      "type": "aws:cdk:creationStack",
+      "data": [
+        "...WrappedClass.<anonymous> in aws-cdk-lib...",
+        "new EmailForwardingRule (/home/danj/dev/ses-email-forwarding/src/email-forwarding-rule.ts:99:19)",
+        "/home/danj/dev/ses-email-forwarding/src/email-forwarding-rule-set.ts:138: (/home/danj/dev/ses-email-forwarding/src/email-forwarding-rule-set.ts:138:3)",
+        "Array.forEach (:)"
+      ]
+    }
+  ],
+  "/EmailForwardingStack/EmailForwarding/EmailForwardingRule-1/EmailForwardingFunction/ServiceRole/Resource": [
+    {
+      "type": "aws:cdk:logicalId",
+      "data": "EmailForwardingEmailForwardingRule1EmailForwardingFunctionServiceRole88357BB5"
+    },
+    {
+      "type": "aws:cdk:creationStack",
+      "data": [
+        "...new Function2 in aws-cdk-lib...",
+        "EmailForwardingRule.createLambdaForwarderFunction (/home/danj/dev/ses-email-forwarding/src/email-forwarding-rule.ts:206:12)",
+        "EmailForwardingRule.createLambdaForwarderAction (/home/danj/dev/ses-email-forwarding/src/email-forwarding-rule.ts:168:36)",
+        "new EmailForwardingRule (/home/danj/dev/ses-email-forwarding/src/email-forwarding-rule.ts:101:33)",
+        "/home/danj/dev/ses-email-forwarding/src/email-forwarding-rule-set.ts:138: (/home/danj/dev/ses-email-forwarding/src/email-forwarding-rule-set.ts:138:3)",
+        "Array.forEach (:)",
+        "EmailForwardingRuleSet.setupEmailForwardingMappings (/home/danj/dev/ses-email-forwarding/src/email-forwarding-rule-set.ts:131:32)"
+      ]
+    }
+  ],
+  "/EmailForwardingStack/EmailForwarding/EmailForwardingRule-0/EmailForwardingFunction/ServiceRole/DefaultPolicy/Resource": [
+    {
+      "type": "aws:cdk:logicalId",
+      "data": "EmailForwardingEmailForwardingRule0EmailForwardingFunctionServiceRoleDefaultPolicy71AEB063"
+    },
+    {
+      "type": "aws:cdk:creationStack",
+      "data": [
+        "...WrappedClass.addToRolePolicy in aws-cdk-lib...",
+        "EmailForwardingRule.createLambdaForwarderAction (/home/danj/dev/ses-email-forwarding/src/email-forwarding-rule.ts:169:23)",
+        "new EmailForwardingRule (/home/danj/dev/ses-email-forwarding/src/email-forwarding-rule.ts:101:33)",
+        "/home/danj/dev/ses-email-forwarding/src/email-forwarding-rule-set.ts:138: (/home/danj/dev/ses-email-forwarding/src/email-forwarding-rule-set.ts:138:3)",
+        "Array.forEach (:)"
+      ]
+    }
+  ],
+  "/EmailForwardingStack/EmailForwarding/EmailForwardingRule-1/EmailForwardingFunction/ServiceRole/DefaultPolicy/Resource": [
+    {
+      "type": "aws:cdk:logicalId",
+      "data": "EmailForwardingEmailForwardingRule1EmailForwardingFunctionServiceRoleDefaultPolicy75B8FD91"
+    },
+    {
+      "type": "aws:cdk:creationStack",
+      "data": [
+        "...WrappedClass.addToRolePolicy in aws-cdk-lib...",
+        "EmailForwardingRule.createLambdaForwarderAction (/home/danj/dev/ses-email-forwarding/src/email-forwarding-rule.ts:169:23)",
+        "new EmailForwardingRule (/home/danj/dev/ses-email-forwarding/src/email-forwarding-rule.ts:101:33)",
+        "/home/danj/dev/ses-email-forwarding/src/email-forwarding-rule-set.ts:138: (/home/danj/dev/ses-email-forwarding/src/email-forwarding-rule-set.ts:138:3)",
+        "Array.forEach (:)"
+      ]
+    }
+  ]
+}

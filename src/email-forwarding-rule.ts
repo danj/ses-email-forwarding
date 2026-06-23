@@ -73,6 +73,12 @@ export interface EmailForwardingRuleProps {
    * @default true
    */
   readonly enableLambdaLogging?: boolean;
+  /**
+   * The DSN for Sentry to report any errors that occur in the Lambda function.
+   *
+   * @default undefined
+   */
+  readonly sentryDsn?: string;
 }
 
 /**
@@ -215,6 +221,10 @@ export class EmailForwardingRule extends Construct {
         FROM_EMAIL: (props.fromPrefix ?? 'noreply') + '@' + props.domainName,
         BUCKET_NAME: bucket.bucketName,
         BUCKET_PREFIX: bucketPrefix,
+        ...(props.sentryDsn ? { 
+          SENTRY_DSN: props.sentryDsn,
+          NODE_OPTIONS: '--import @sentry/aws-serverless/awslambda-auto'
+        } : {}),
       },
     });
   }

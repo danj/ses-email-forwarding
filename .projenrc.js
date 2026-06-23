@@ -56,7 +56,7 @@ const project = new AwsCdkConstructLibrary({
     'typescript@^5.9.3',
     'aws-cdk@2.1124.1',
   ],
-  bundledDeps: ['aws-lambda-ses-forwarder@^6.0.0', '@aws-sdk/client-ssm', '@seeebiii/ses-verify-identities@4.2.3'],
+  bundledDeps: ['aws-lambda-ses-forwarder@^6.0.0', '@aws-sdk/client-ssm', '@seeebiii/ses-verify-identities@4.2.3', '@sentry/aws-serverless'],
   homepage: 'https://github.com/seeebiii/ses-email-forwarding',
   keywords: ['aws',
     'aws-cdk',

@@ -3,6 +3,7 @@ import type { Context, S3Event } from 'aws-lambda';
 // eslint-disable-next-line @typescript-eslint/no-require-imports
 const forwarder = require('aws-lambda-ses-forwarder');
 
+
 const ssm = new SSMClient({});
 const ssmKey = process.env.EMAIL_MAPPING_SSM_KEY as string;
 const fromEmail = process.env.FROM_EMAIL;

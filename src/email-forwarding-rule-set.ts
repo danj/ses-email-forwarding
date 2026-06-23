@@ -62,6 +62,12 @@ export interface EmailForwardingProps {
    * @default ['Bounce', 'Complaint']
    */
   readonly notificationTypes?: NotificationType[];
+  /**
+   * The DSN for Sentry to report any errors that occur in the Lambda function.
+   *
+   * @default undefined
+   */
+  readonly sentryDsn?: string;
 }
 
 export interface EmailForwardingRuleSetProps {
@@ -143,6 +149,7 @@ export class EmailForwardingRuleSet extends Construct {
           emailMapping: emailForwardingProps.emailMappings,
           bucket: emailForwardingProps.bucket,
           bucketPrefix: emailForwardingProps.bucketPrefix,
+          sentryDsn: emailForwardingProps.sentryDsn,
         }),
         verifySesDomain: this.verifyDomain(emailForwardingProps, domainName),
         verifySesEmailAddresses: this.verifyTargetEmailAddresses(emailForwardingProps, domainName),

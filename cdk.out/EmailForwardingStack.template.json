@@ -1,0 +1,633 @@
+{
+ "Outputs": {
+  "EmailForwardingReceiptRuleSetOutputC61C9DCB": {
+   "Description": "ReceiptRuleSetName",
+   "Value": "fw"
+  }
+ },
+ "Resources": {
+  "EmailForwardingEmailForwardingRule0ReceiptRule04278776": {
+   "Type": "AWS::SES::ReceiptRule",
+   "Properties": {
+    "Rule": {
+     "Actions": [
+      {
+       "S3Action": {
+        "BucketName": {
+         "Ref": "EmailForwardingEmailForwardingRule0EmailBucketF4A4F99D"
+        },
+        "ObjectKeyPrefix": "inbox/"
+       }
+      },
+      {
+       "LambdaAction": {
+        "FunctionArn": {
+         "Fn::GetAtt": [
+          "EmailForwardingEmailForwardingRule0EmailForwardingFunction70AAF617",
+          "Arn"
+         ]
+        },
+        "InvocationType": "Event"
+       }
+      }
+     ],
+     "Enabled": true,
+     "Name": "provoize-rule-rule-set",
+     "Recipients": [
+      "support@provoize.com",
+      "abuse@provoize.com",
+      "info@provoize.com",
+      "privacy@provoize.com",
+      "legal@provoize.com",
+      "dpo@provoize.com",
+      "dan@provoize.com",
+      "itzik@provoize.com"
+     ],
+     "ScanEnabled": true,
+     "TlsPolicy": "Require"
+    },
+    "RuleSetName": "fw"
+   },
+   "DependsOn": [
+    "EmailForwardingEmailForwardingRule0EmailBucketPolicyEA436520",
+    "EmailForwardingEmailForwardingRule0EmailForwardingFunctionAllowSes08023DDF"
+   ],
+   "Metadata": {
+    "aws:cdk:path": "EmailForwardingStack/EmailForwarding/EmailForwardingRule-0/ReceiptRule/Resource"
+   }
+  },
+  "EmailForwardingEmailForwardingRule0EmailBucketF4A4F99D": {
+   "Type": "AWS::S3::Bucket",
+   "Properties": {
+    "LifecycleConfiguration": {
+     "Rules": [
+      {
+       "ExpirationInDays": 7,
+       "Status": "Enabled"
+      }
+     ]
+    }
+   },
+   "UpdateReplacePolicy": "Retain",
+   "DeletionPolicy": "Retain",
+   "Metadata": {
+    "aws:cdk:path": "EmailForwardingStack/EmailForwarding/EmailForwardingRule-0/EmailBucket/Resource"
+   }
+  },
+  "EmailForwardingEmailForwardingRule0EmailBucketPolicyEA436520": {
+   "Type": "AWS::S3::BucketPolicy",
+   "Properties": {
+    "Bucket": {
+     "Ref": "EmailForwardingEmailForwardingRule0EmailBucketF4A4F99D"
+    },
+    "PolicyDocument": {
+     "Statement": [
+      {
+       "Action": "s3:PutObject",
+       "Condition": {
+        "StringEquals": {
+         "aws:SourceAccount": {
+          "Ref": "AWS::AccountId"
+         }
+        }
+       },
+       "Effect": "Allow",
+       "Principal": {
+        "Service": "ses.amazonaws.com"
+       },
+       "Resource": {
+        "Fn::Join": [
+         "",
+         [
+          {
+           "Fn::GetAtt": [
+            "EmailForwardingEmailForwardingRule0EmailBucketF4A4F99D",
+            "Arn"
+           ]
+          },
+          "/inbox/*"
+         ]
+        ]
+       }
+      }
+     ],
+     "Version": "2012-10-17"
+    }
+   },
+   "Metadata": {
+    "aws:cdk:path": "EmailForwardingStack/EmailForwarding/EmailForwardingRule-0/EmailBucket/Policy/Resource"
+   }
+  },
+  "EmailForwardingEmailForwardingRule0ForwardEmailMappingCC207082": {
+   "Type": "AWS::SSM::Parameter",
+   "Properties": {
+    "Name": "/ses-email-forwarding/provoize-rule/mapping",
+    "Type": "String",
+    "Value": "{\"support@provoize.com\":[\"dan.julius+support.provoize@gmail.com\",\"ibenyeh+support.provoize@gmail.com\"],\"abuse@provoize.com\":[\"dan.julius+abuse.provoize@gmail.com\"],\"info@provoize.com\":[\"dan.julius+info.provoize@gmail.com\",\"ibenyeh+info.provoize@gmail.com\"],\"privacy@provoize.com\":[\"dan.julius+privacy.provoize@gmail.com\",\"ibenyeh+privacy.provoize@gmail.com\"],\"legal@provoize.com\":[\"dan.julius+legal.provoize@gmail.com\",\"ibenyeh+legal.provoize@gmail.com\"],\"dpo@provoize.com\":[\"dan.julius+dpo.provoize@gmail.com\",\"ibenyeh+dpo.provoize@gmail.com\"],\"dan@provoize.com\":[\"dan.julius+provoize@gmail.com\"],\"itzik@provoize.com\":[\"ibenyeh+provoize@gmail.com\"]}"
+   },
+   "Metadata": {
+    "aws:cdk:path": "EmailForwardingStack/EmailForwarding/EmailForwardingRule-0/ForwardEmailMapping/Resource"
+   }
+  },
+  "EmailForwardingEmailForwardingRule0EmailForwardingFunctionServiceRole4F091845": {
+   "Type": "AWS::IAM::Role",
+   "Properties": {
+    "AssumeRolePolicyDocument": {
+     "Statement": [
+      {
+       "Action": "sts:AssumeRole",
+       "Effect": "Allow",
+       "Principal": {
+        "Service": "lambda.amazonaws.com"
+       }
+      }
+     ],
+     "Version": "2012-10-17"
+    },
+    "ManagedPolicyArns": [
+     {
+      "Fn::Join": [
+       "",
+       [
+        "arn:",
+        {
+         "Ref": "AWS::Partition"
+        },
+        ":iam::aws:policy/service-role/AWSLambdaBasicExecutionRole"
+       ]
+      ]
+     }
+    ]
+   },
+   "Metadata": {
+    "aws:cdk:path": "EmailForwardingStack/EmailForwarding/EmailForwardingRule-0/EmailForwardingFunction/ServiceRole/Resource"
+   }
+  },
+  "EmailForwardingEmailForwardingRule0EmailForwardingFunctionServiceRoleDefaultPolicy71AEB063": {
+   "Type": "AWS::IAM::Policy",
+   "Properties": {
+    "PolicyDocument": {
+     "Statement": [
+      {
+       "Action": "ssm:GetParameter",
+       "Effect": "Allow",
+       "Resource": {
+        "Fn::Join": [
+         "",
+         [
+          "arn:",
+          {
+           "Ref": "AWS::Partition"
+          },
+          ":ssm:us-east-1:461111861556:parameter",
+          {
+           "Ref": "EmailForwardingEmailForwardingRule0ForwardEmailMappingCC207082"
+          }
+         ]
+        ]
+       }
+      },
+      {
+       "Action": "ses:SendRawEmail",
+       "Effect": "Allow",
+       "Resource": "*"
+      },
+      {
+       "Action": [
+        "s3:ListBucket",
+        "s3:GetObject",
+        "s3:GetObjectTagging",
+        "s3:PutObject",
+        "s3:PutObjectTagging"
+       ],
+       "Effect": "Allow",
+       "Resource": [
+        {
+         "Fn::GetAtt": [
+          "EmailForwardingEmailForwardingRule0EmailBucketF4A4F99D",
+          "Arn"
+         ]
+        },
+        {
+         "Fn::Join": [
+          "",
+          [
+           {
+            "Fn::GetAtt": [
+             "EmailForwardingEmailForwardingRule0EmailBucketF4A4F99D",
+             "Arn"
+            ]
+           },
+           "/*"
+          ]
+         ]
+        }
+       ]
+      }
+     ],
+     "Version": "2012-10-17"
+    },
+    "PolicyName": "EmailForwardingEmailForwardingRule0EmailForwardingFunctionServiceRoleDefaultPolicy71AEB063",
+    "Roles": [
+     {
+      "Ref": "EmailForwardingEmailForwardingRule0EmailForwardingFunctionServiceRole4F091845"
+     }
+    ]
+   },
+   "Metadata": {
+    "aws:cdk:path": "EmailForwardingStack/EmailForwarding/EmailForwardingRule-0/EmailForwardingFunction/ServiceRole/DefaultPolicy/Resource"
+   }
+  },
+  "EmailForwardingEmailForwardingRule0EmailForwardingFunction70AAF617": {
+   "Type": "AWS::Lambda::Function",
+   "Properties": {
+    "Code": {
+     "S3Bucket": "cdk-hnb659fds-assets-461111861556-us-east-1",
+     "S3Key": "0eaf8a4ef2bc9d3741a8c683f670fd8a0a42336c21caa2e5a304b607cac591e3.zip"
+    },
+    "Environment": {
+     "Variables": {
+      "ENABLE_LOGGING": "true",
+      "EMAIL_MAPPING_SSM_KEY": {
+       "Ref": "EmailForwardingEmailForwardingRule0ForwardEmailMappingCC207082"
+      },
+      "FROM_EMAIL": "noreply@provoize.com",
+      "BUCKET_NAME": {
+       "Ref": "EmailForwardingEmailForwardingRule0EmailBucketF4A4F99D"
+      },
+      "BUCKET_PREFIX": "inbox/"
+     }
+    },
+    "Handler": "index.handler",
+    "MemorySize": 512,
+    "Role": {
+     "Fn::GetAtt": [
+      "EmailForwardingEmailForwardingRule0EmailForwardingFunctionServiceRole4F091845",
+      "Arn"
+     ]
+    },
+    "Runtime": "nodejs22.x",
+    "Timeout": 30
+   },
+   "DependsOn": [
+    "EmailForwardingEmailForwardingRule0EmailForwardingFunctionServiceRoleDefaultPolicy71AEB063",
+    "EmailForwardingEmailForwardingRule0EmailForwardingFunctionServiceRole4F091845"
+   ],
+   "Metadata": {
+    "aws:cdk:path": "EmailForwardingStack/EmailForwarding/EmailForwardingRule-0/EmailForwardingFunction/Resource",
+    "aws:asset:path": "asset.0eaf8a4ef2bc9d3741a8c683f670fd8a0a42336c21caa2e5a304b607cac591e3",
+    "aws:asset:is-bundled": false,
+    "aws:asset:property": "Code"
+   }
+  },
+  "EmailForwardingEmailForwardingRule0EmailForwardingFunctionAllowSes08023DDF": {
+   "Type": "AWS::Lambda::Permission",
+   "Properties": {
+    "Action": "lambda:InvokeFunction",
+    "FunctionName": {
+     "Fn::GetAtt": [
+      "EmailForwardingEmailForwardingRule0EmailForwardingFunction70AAF617",
+      "Arn"
+     ]
+    },
+    "Principal": "ses.amazonaws.com",
+    "SourceAccount": {
+     "Ref": "AWS::AccountId"
+    }
+   },
+   "Metadata": {
+    "aws:cdk:path": "EmailForwardingStack/EmailForwarding/EmailForwardingRule-0/EmailForwardingFunction/AllowSes"
+   }
+  },
+  "EmailForwardingEmailForwardingRule1ReceiptRule727A7D4E": {
+   "Type": "AWS::SES::ReceiptRule",
+   "Properties": {
+    "Rule": {
+     "Actions": [
+      {
+       "S3Action": {
+        "BucketName": {
+         "Ref": "EmailForwardingEmailForwardingRule1EmailBucket8D13730A"
+        },
+        "ObjectKeyPrefix": "inbox/"
+       }
+      },
+      {
+       "LambdaAction": {
+        "FunctionArn": {
+         "Fn::GetAtt": [
+          "EmailForwardingEmailForwardingRule1EmailForwardingFunction17FA6FA1",
+          "Arn"
+         ]
+        },
+        "InvocationType": "Event"
+       }
+      }
+     ],
+     "Enabled": true,
+     "Name": "djulius-rule-rule-set",
+     "Recipients": [
+      "me@djulius.com",
+      "djulius.com"
+     ],
+     "ScanEnabled": true,
+     "TlsPolicy": "Require"
+    },
+    "RuleSetName": "fw"
+   },
+   "DependsOn": [
+    "EmailForwardingEmailForwardingRule1EmailBucketPolicy8A2FC119",
+    "EmailForwardingEmailForwardingRule1EmailForwardingFunctionAllowSes90607F6F"
+   ],
+   "Metadata": {
+    "aws:cdk:path": "EmailForwardingStack/EmailForwarding/EmailForwardingRule-1/ReceiptRule/Resource"
+   }
+  },
+  "EmailForwardingEmailForwardingRule1EmailBucket8D13730A": {
+   "Type": "AWS::S3::Bucket",
+   "Properties": {
+    "LifecycleConfiguration": {
+     "Rules": [
+      {
+       "ExpirationInDays": 7,
+       "Status": "Enabled"
+      }
+     ]
+    }
+   },
+   "UpdateReplacePolicy": "Retain",
+   "DeletionPolicy": "Retain",
+   "Metadata": {
+    "aws:cdk:path": "EmailForwardingStack/EmailForwarding/EmailForwardingRule-1/EmailBucket/Resource"
+   }
+  },
+  "EmailForwardingEmailForwardingRule1EmailBucketPolicy8A2FC119": {
+   "Type": "AWS::S3::BucketPolicy",
+   "Properties": {
+    "Bucket": {
+     "Ref": "EmailForwardingEmailForwardingRule1EmailBucket8D13730A"
+    },
+    "PolicyDocument": {
+     "Statement": [
+      {
+       "Action": "s3:PutObject",
+       "Condition": {
+        "StringEquals": {
+         "aws:SourceAccount": {
+          "Ref": "AWS::AccountId"
+         }
+        }
+       },
+       "Effect": "Allow",
+       "Principal": {
+        "Service": "ses.amazonaws.com"
+       },
+       "Resource": {
+        "Fn::Join": [
+         "",
+         [
+          {
+           "Fn::GetAtt": [
+            "EmailForwardingEmailForwardingRule1EmailBucket8D13730A",
+            "Arn"
+           ]
+          },
+          "/inbox/*"
+         ]
+        ]
+       }
+      }
+     ],
+     "Version": "2012-10-17"
+    }
+   },
+   "Metadata": {
+    "aws:cdk:path": "EmailForwardingStack/EmailForwarding/EmailForwardingRule-1/EmailBucket/Policy/Resource"
+   }
+  },
+  "EmailForwardingEmailForwardingRule1ForwardEmailMapping385AC968": {
+   "Type": "AWS::SSM::Parameter",
+   "Properties": {
+    "Name": "/ses-email-forwarding/djulius-rule/mapping",
+    "Type": "String",
+    "Value": "{\"me@djulius.com\":[\"dan.julius+me.djulius@gmail.com\"],\"@djulius.com\":[\"dan.julius+catch-all@gmail.com\"]}"
+   },
+   "Metadata": {
+    "aws:cdk:path": "EmailForwardingStack/EmailForwarding/EmailForwardingRule-1/ForwardEmailMapping/Resource"
+   }
+  },
+  "EmailForwardingEmailForwardingRule1EmailForwardingFunctionServiceRole88357BB5": {
+   "Type": "AWS::IAM::Role",
+   "Properties": {
+    "AssumeRolePolicyDocument": {
+     "Statement": [
+      {
+       "Action": "sts:AssumeRole",
+       "Effect": "Allow",
+       "Principal": {
+        "Service": "lambda.amazonaws.com"
+       }
+      }
+     ],
+     "Version": "2012-10-17"
+    },
+    "ManagedPolicyArns": [
+     {
+      "Fn::Join": [
+       "",
+       [
+        "arn:",
+        {
+         "Ref": "AWS::Partition"
+        },
+        ":iam::aws:policy/service-role/AWSLambdaBasicExecutionRole"
+       ]
+      ]
+     }
+    ]
+   },
+   "Metadata": {
+    "aws:cdk:path": "EmailForwardingStack/EmailForwarding/EmailForwardingRule-1/EmailForwardingFunction/ServiceRole/Resource"
+   }
+  },
+  "EmailForwardingEmailForwardingRule1EmailForwardingFunctionServiceRoleDefaultPolicy75B8FD91": {
+   "Type": "AWS::IAM::Policy",
+   "Properties": {
+    "PolicyDocument": {
+     "Statement": [
+      {
+       "Action": "ssm:GetParameter",
+       "Effect": "Allow",
+       "Resource": {
+        "Fn::Join": [
+         "",
+         [
+          "arn:",
+          {
+           "Ref": "AWS::Partition"
+          },
+          ":ssm:us-east-1:461111861556:parameter",
+          {
+           "Ref": "EmailForwardingEmailForwardingRule1ForwardEmailMapping385AC968"
+          }
+         ]
+        ]
+       }
+      },
+      {
+       "Action": "ses:SendRawEmail",
+       "Effect": "Allow",
+       "Resource": "*"
+      },
+      {
+       "Action": [
+        "s3:ListBucket",
+        "s3:GetObject",
+        "s3:GetObjectTagging",
+        "s3:PutObject",
+        "s3:PutObjectTagging"
+       ],
+       "Effect": "Allow",
+       "Resource": [
+        {
+         "Fn::GetAtt": [
+          "EmailForwardingEmailForwardingRule1EmailBucket8D13730A",
+          "Arn"
+         ]
+        },
+        {
+         "Fn::Join": [
+          "",
+          [
+           {
+            "Fn::GetAtt": [
+             "EmailForwardingEmailForwardingRule1EmailBucket8D13730A",
+             "Arn"
+            ]
+           },
+           "/*"
+          ]
+         ]
+        }
+       ]
+      }
+     ],
+     "Version": "2012-10-17"
+    },
+    "PolicyName": "EmailForwardingEmailForwardingRule1EmailForwardingFunctionServiceRoleDefaultPolicy75B8FD91",
+    "Roles": [
+     {
+      "Ref": "EmailForwardingEmailForwardingRule1EmailForwardingFunctionServiceRole88357BB5"
+     }
+    ]
+   },
+   "Metadata": {
+    "aws:cdk:path": "EmailForwardingStack/EmailForwarding/EmailForwardingRule-1/EmailForwardingFunction/ServiceRole/DefaultPolicy/Resource"
+   }
+  },
+  "EmailForwardingEmailForwardingRule1EmailForwardingFunction17FA6FA1": {
+   "Type": "AWS::Lambda::Function",
+   "Properties": {
+    "Code": {
+     "S3Bucket": "cdk-hnb659fds-assets-461111861556-us-east-1",
+     "S3Key": "0eaf8a4ef2bc9d3741a8c683f670fd8a0a42336c21caa2e5a304b607cac591e3.zip"
+    },
+    "Environment": {
+     "Variables": {
+      "ENABLE_LOGGING": "true",
+      "EMAIL_MAPPING_SSM_KEY": {
+       "Ref": "EmailForwardingEmailForwardingRule1ForwardEmailMapping385AC968"
+      },
+      "FROM_EMAIL": "noreply@djulius.com",
+      "BUCKET_NAME": {
+       "Ref": "EmailForwardingEmailForwardingRule1EmailBucket8D13730A"
+      },
+      "BUCKET_PREFIX": "inbox/"
+     }
+    },
+    "Handler": "index.handler",
+    "MemorySize": 512,
+    "Role": {
+     "Fn::GetAtt": [
+      "EmailForwardingEmailForwardingRule1EmailForwardingFunctionServiceRole88357BB5",
+      "Arn"
+     ]
+    },
+    "Runtime": "nodejs22.x",
+    "Timeout": 30
+   },
+   "DependsOn": [
+    "EmailForwardingEmailForwardingRule1EmailForwardingFunctionServiceRoleDefaultPolicy75B8FD91",
+    "EmailForwardingEmailForwardingRule1EmailForwardingFunctionServiceRole88357BB5"
+   ],
+   "Metadata": {
+    "aws:cdk:path": "EmailForwardingStack/EmailForwarding/EmailForwardingRule-1/EmailForwardingFunction/Resource",
+    "aws:asset:path": "asset.0eaf8a4ef2bc9d3741a8c683f670fd8a0a42336c21caa2e5a304b607cac591e3",
+    "aws:asset:is-bundled": false,
+    "aws:asset:property": "Code"
+   }
+  },
+  "EmailForwardingEmailForwardingRule1EmailForwardingFunctionAllowSes90607F6F": {
+   "Type": "AWS::Lambda::Permission",
+   "Properties": {
+    "Action": "lambda:InvokeFunction",
+    "FunctionName": {
+     "Fn::GetAtt": [
+      "EmailForwardingEmailForwardingRule1EmailForwardingFunction17FA6FA1",
+      "Arn"
+     ]
+    },
+    "Principal": "ses.amazonaws.com",
+    "SourceAccount": {
+     "Ref": "AWS::AccountId"
+    }
+   },
+   "Metadata": {
+    "aws:cdk:path": "EmailForwardingStack/EmailForwarding/EmailForwardingRule-1/EmailForwardingFunction/AllowSes"
+   }
+  },
+  "CDKMetadata": {
+   "Type": "AWS::CDK::Metadata",
+   "Properties": {
+    "Analytics": "v2:deflate64:H4sIAAAAAAAA/02OQWrDMBBFz5K9PE1VStdNodsa5QBhIk/NxJYUNFJCELp7UWyarN5/8xn4GvT7B2w3eJXODlM38xHKPqGdlCEJOVpSX7/+J6dzTgqvcihCAsWQJT4nk+d7/6RVyRuUXbYTpVataUEfZra3x3n1RXYo7VtcWxDZjz1GdJQotod/qWpGdxwQynf2NnHwrX7OPUXHIhx8VYwOignrzMbHhiW1wQcUoSTw2VDVHfuEI/uxKh8GgpO8XLQG/QrbzUmYu5h9YkdgFv4BwQvDmEkBAAA="
+   },
+   "Metadata": {
+    "aws:cdk:path": "EmailForwardingStack/CDKMetadata/Default"
+   }
+  }
+ },
+ "Parameters": {
+  "BootstrapVersion": {
+   "Type": "AWS::SSM::Parameter::Value<String>",
+   "Default": "/cdk-bootstrap/hnb659fds/version",
+   "Description": "Version of the CDK Bootstrap resources in this environment, automatically retrieved from SSM Parameter Store. [cdk:skip]"
+  }
+ },
+ "Rules": {
+  "CheckBootstrapVersion": {
+   "Assertions": [
+    {
+     "Assert": {
+      "Fn::Not": [
+       {
+        "Fn::Contains": [
+         [
+          "1",
+          "2",
+          "3",
+          "4",
+          "5"
+         ],
+         {
+          "Ref": "BootstrapVersion"
+         }
+        ]
+       }
+      ]
+     },
+     "AssertDescription": "CDK bootstrap stack version 6 required. Please run 'cdk bootstrap' with a recent version of the CDK CLI."
+    }
+   ]
+  }
+ }
+}

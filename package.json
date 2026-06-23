@@ -70,11 +70,13 @@
   "dependencies": {
     "@aws-sdk/client-ssm": "^3.948.0",
     "@seeebiii/ses-verify-identities": "4.2.3",
+    "@sentry/aws-serverless": "^10.60.0",
     "aws-lambda-ses-forwarder": "^6.0.0"
   },
   "bundledDependencies": [
     "@aws-sdk/client-ssm",
     "@seeebiii/ses-verify-identities",
+    "@sentry/aws-serverless",
     "aws-lambda-ses-forwarder"
   ],
   "keywords": [
