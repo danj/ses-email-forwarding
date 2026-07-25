@@ -4,6 +4,7 @@ import { ReceiptRuleSet } from 'aws-cdk-lib/aws-ses';
 import { Construct } from 'constructs';
 import { EmailForwardingRuleSet } from '../src';
 import { djuliusEmailForwarding } from './domains/djulius';
+import { getwebsyncEmailForwarding } from './domains/getwebsync';
 import { provoizeEmailForwarding } from './domains/provoize';
 
 class EmailForwardingStack extends cdk.Stack {
@@ -18,6 +19,7 @@ class EmailForwardingStack extends cdk.Stack {
       emailForwardingProps: [
         provoizeEmailForwarding,
         djuliusEmailForwarding,
+        getwebsyncEmailForwarding,
       ],
     });
   }
